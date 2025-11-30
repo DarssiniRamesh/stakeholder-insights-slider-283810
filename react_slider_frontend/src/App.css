@@ -82,16 +82,19 @@
 }
 
 .title {
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
   font-size: var(--slider-title-size);
   margin: 0;
-  color: var(--slider-text-strong, var(--text-strong, #2B3A4A));
-  letter-spacing: 0.3px;
+  color: var(--text-strong, #0F172A);
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
 }
 
 .description {
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
   font-size: var(--slider-desc-size);
-  margin: 6px 0 0;
-  color: var(--slider-text-alt, rgba(0,0,0,0.70));
+  margin: 8px 0 0;
+  color: var(--text-default, #334155);
 }
 
 .App-link {

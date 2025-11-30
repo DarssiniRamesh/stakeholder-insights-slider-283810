@@ -30,12 +30,12 @@ export default function StakeholderSliderPage() {
         <header style={{ marginBottom: 24 }}>
           <h1
             style={{
-              fontFamily: '"Helvetica Neue", Arial, sans-serif',
+              fontFamily: "'Monda', 'Helvetica Neue', Arial, sans-serif",
               fontWeight: 700,
               fontSize: "var(--slider-title-size)",
               letterSpacing: "0.45px",
               textTransform: "uppercase",
-              color: "var(--slider-text-strong, #1e3a8a)",
+              color: "var(--text-strong, #0F172A)",
               margin: 0,
             }}
           >
@@ -44,7 +44,9 @@ export default function StakeholderSliderPage() {
           <p
             className="description"
             style={{
-              marginTop: 6,
+              marginTop: 8,
+              fontFamily: "'Monda', 'Helvetica Neue', Arial, sans-serif",
+              color: "var(--text-default, #334155)",
             }}
           >
             Use the arrows or dots to view Expected Relief Impact & Metrics.

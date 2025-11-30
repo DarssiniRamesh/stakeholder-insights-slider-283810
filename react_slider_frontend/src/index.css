@@ -1,12 +1,30 @@
+/* Import Monda font per design spec */
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap');
+
+:root {
+  /* Ensure canvas is white as requested unless overridden by slide variant */
+  --bg-canvas: #FFFFFF;
+  --text-default: #334155;
+  --text-strong: #0F172A;
+}
+
+/* Base typography uses Monda site-wide for headings and body per request */
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Monda', 'Helvetica Neue', Arial, system-ui, -apple-system, 'Segoe UI', Roboto, 'Oxygen', Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--bg-canvas, #ffffff);
   color: var(--slider-text-body, #1f4399);
+}
+
+/* Make sure common heading elements honor Monda explicitly */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
 }
 
 code {

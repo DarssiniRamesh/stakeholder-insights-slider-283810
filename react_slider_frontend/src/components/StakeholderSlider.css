@@ -1,28 +1,29 @@
 /* Slider root mirrors white PPT canvas with a centered content area */
 .slider-root {
   --card-bg: #ffffff;
-  --card-shadow: 0 3px 12px var(--shadow-rgba, rgba(20,30,50,0.08));
+  --card-shadow: 0 4px 16px var(--shadow-rgba, rgba(20,30,50,0.08));
   --card-radius: 10px;
 
-  /* Override default grays to blue text ramp for slider */
-  --text-color: var(--slider-text-body, #1f4399);
-  --muted: var(--slider-text-alt, #3758a4);
+  /* Text ramp aligned to design tokens */
+  --text-color: var(--text-default, #334155);
+  --muted: var(--text-muted, #64748B);
 
-  /* Accent (decorative) still uses accent-blue for rings/dots */
-  --accent: var(--accent-blue, #2E74C5);
-  --border: var(--border-subtle, #E6E9EF);
+  /* Accent for controls/dots */
+  --accent: var(--accent-blue, #1E60C2);
+  --border: var(--card-border, #E2E8F0);
 
   background: var(--bg-canvas, #fff);
   color: var(--text-color);
-  width: min(1120px, 92vw); /* reduce overall canvas width slightly */
+  width: min(1120px, 92vw);
   margin: 0 auto;
-  padding: 0 0 6px; /* slightly tighter bottom padding */
-  outline: none; /* rely on custom focus style */
+  padding: 0 0 6px;
+  outline: none;
   position: relative;
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif; /* ensure headings/metrics use Monda */
 }
 
 .slider-root:focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--slider-text-strong, #1e3a8a) 30%, transparent), var(--card-shadow);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #1E60C2) 30%, transparent), var(--card-shadow);
   border-radius: 8px;
 }
 
@@ -39,53 +40,52 @@
 }
 
 .slider-viewport {
-  overflow: visible; /* ensure card capsules and controls aren't clipped */
+  overflow: visible;
   background: var(--bg-canvas, #fff);
-  border-radius: 10px; /* match reduced card radius */
+  border-radius: 10px;
   border: 1px solid var(--border);
-  position: relative; /* create stacking context for controls and track */
-  min-height: 100px; /* avoid zero-height edge cases if content fails to size */
+  position: relative;
+  min-height: 100px;
 }
 
-/* The track holds one 'slide' that itself is a grid of four cards, allowing
-   for future multi-slide extension with smooth translations. */
+/* Track and slide for carousel motion */
 .slider-track {
   display: flex;
   width: 100%;
   transition: transform 300ms ease-in-out;
   will-change: transform;
-  min-height: 1px; /* guard against flex collapse */
+  min-height: 1px;
 }
 
 .slide {
   flex: 0 0 100%;
   list-style: none;
-  padding: 20px 22px; /* tighter slide padding */
+  padding: 24px 32px; /* per notes */
   display: block;
   background: var(--bg-canvas, #fff);
 }
 
-/* Card grid based on the PPT layout spec */
+/* Grid layout — default 4 columns on large, collapses as needed */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px; /* reduce gaps between cards */
+  gap: 24px; /* per notes */
 }
 
-/* Card component styles aligning with design notes */
+/* Card styles per design notes */
 .card {
   position: relative;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 10px; /* slightly smaller radius */
+  border-radius: 12px;
   box-shadow: var(--card-shadow);
-  padding: 54px 14px 14px; /* reduce internal padding while keeping room for icon */
+  padding: 64px 18px 18px; /* space for top icon capsule */
   text-align: center;
   transition: box-shadow 160ms ease, transform 80ms ease;
 }
 
 .card:hover {
-  box-shadow: 0 7px 20px rgba(20,30,50,.12);
+  box-shadow: 0 8px 24px rgba(20,30,50,.12);
 }
 
 .card:focus-within {
@@ -96,83 +96,83 @@
 /* Icon capsule */
 .card-icon {
   position: absolute;
-  top: -14px; /* slightly less protrusion */
+  top: -16px;
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
   border: 1px solid currentColor;
-  border-radius: 12px; /* slightly smaller */
-  padding: 10px 12px; /* reduced capsule padding */
+  border-radius: 14px;
+  padding: 12px 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 56px; /* narrower capsule */
-  min-height: 42px; /* shorter capsule */
-  z-index: 1; /* ensure the capsule is visible above the card */
+  min-width: 64px;
+  min-height: 48px;
+  z-index: 1;
 }
 
-/* Accent mapping aligned to requested scheme for the metrics slide:
-   - Headers in #050E9B (applied via .card-title color below)
-   - Accents: Green #10B981, Blue #38BDF8, Orange #F59E0B (used for icons/capsules) */
-.card--blue { color: #38BDF8; }   /* speed/efficiency */
-.card--green { color: #10B981; }  /* positive outcomes */
-.card--orange { color: #F59E0B; } /* alerts/fraud */
-.card--purple { color: var(--accent-purple, #6A55C7); } /* keep existing for scale motif */
+/* Accent mapping using current palette */
+.card--blue { color: var(--accent-blue, #1E60C2); }
+.card--green { color: var(--accent-green, #17A569); }
+.card--orange { color: var(--accent-orange, #F5A524); }
+.card--purple { color: var(--accent-purple, #6A55C7); }
 
-/* Ensure headers use Invia Government blue #050E9B */
+/* Titles: uppercase, strong blue text from style guide */
 .card-title {
-  margin: 10px 0; /* tighten gap to description */
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin: 12px 0;
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
-  font-size: var(--card-title-size, clamp(15px, 1.3vw, 17px));
+  font-size: var(--card-title-size, clamp(14px, 1.3vw, 16px));
   line-height: 1.3;
   letter-spacing: 0.45px;
   text-transform: uppercase;
-  color: #050E9B;
+  color: var(--text-strong, #0F172A);
 }
 
+/* Body: slightly muted, keep readability on white */
 .card-body {
-  color: var(--slider-text-body, #1f4399);
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-default, #334155);
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 400;
-  font-size: var(--card-body-size, clamp(14px, 1.2vw, 16px));
-  line-height: 1.5;
+  font-size: var(--card-body-size, clamp(13px, 1.2vw, 15px));
+  line-height: 1.45;
   display: grid;
-  gap: 6px; /* tighter bullet spacing */
+  gap: 8px;
 }
 
 .card-line {
   margin: 0;
 }
 
-/* Emphasized metric line (first line in quadrant cards) */
+/* Emphasized metric line (used in metrics slide first line) */
 .card-line.metric {
-  font-weight: 800;
-  font-size: clamp(18px, 2.8vw, 28px);
+  font-weight: 700;
+  font-size: clamp(26px, 3.6vw, 44px);
   line-height: 1.2;
   letter-spacing: 0.2px;
-  color: #050E9B; /* ensure strong contrast per requirement */
+  color: var(--accent-blue, #1E60C2);
 }
 
+/* Inline chip inside card */
 .card-chip {
-  margin-top: 12px; /* slightly reduced spacing */
+  margin-top: 14px;
   display: inline-block;
-  padding: 7px 10px; /* lighter chip padding to reduce footprint */
-  background: var(--bg-subtle, #F5F7FA);
-  color: var(--slider-text-alt, #3758a4);
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding: 8px 12px;
+  background: var(--bg-badge, #F5F7FA);
+  color: var(--text-muted, #64748B);
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 600;
   font-size: var(--card-chip-size, 12.5px);
   line-height: 1;
-  border-radius: 18px; /* slightly smaller */
+  border-radius: 20px;
 }
 
 /* Optional caption under card if used */
 .card-caption {
-  margin-top: 6px;
+  margin-top: 8px;
   text-align: center;
-  color: var(--text-muted, #6C7A89);
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-muted, #64748B);
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 600;
   font-size: 12px;
 }
@@ -186,54 +186,55 @@
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
-  pointer-events: none; /* allow clicks only on buttons */
-  z-index: 2; /* place above slide content */
+  pointer-events: none;
+  z-index: 2;
 }
 
 .nav-btn {
   pointer-events: auto;
   background: #ffffff;
   border: 1px solid var(--border);
-  width: 36px;  /* slightly smaller */
-  height: 36px; /* slightly smaller */
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #111827;
-  font-size: 20px; /* scale icon a bit down */
+  color: var(--text-default, #334155);
+  font-size: 20px;
   line-height: 1;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 2px rgba(16,24,40,0.06);
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
-  margin: 0 4px; /* reduce lateral margin to keep alignment */
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, color 150ms ease;
+  margin: 0 4px;
 }
 
 .nav-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  border-color: #d1d5db;
+  border-color: #C7D2FE;
+  color: var(--accent-blue, #1E60C2);
 }
 
 .nav-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--slider-text-strong, #1e3a8a) 35%, transparent), 0 6px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 0 0 3px #C7D2FE, 0 6px 16px rgba(0,0,0,0.08);
   border-color: var(--accent);
 }
 
 /* Pagination dots */
 .slider-dots {
   display: flex;
-  gap: 10px; /* slightly tighter dots spacing */
+  gap: 12px;
   justify-content: center;
-  margin-top: 14px; /* keep pagination visually close */
+  margin-top: 16px;
   position: relative;
   z-index: 1;
 }
 
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   background: #D5DCE5;
   border-radius: 999px;
   border: none;
@@ -248,32 +249,32 @@
 
 .dot:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--slider-text-strong, #1e3a8a) 35%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #1E60C2) 35%, transparent);
 }
 
 .dot.active {
-  background: var(--accent-blue, #2E74C5);
+  background: var(--accent-blue, #1E60C2);
 }
 
-/* Responsive behavior: ensure 2x2 quadrants at medium widths */
+/* Responsive behavior */
 @media (max-width: 1199px){
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px; /* a bit tighter on mid sizes */
+    gap: 16px;
   }
 }
 
 @media (max-width: 640px) {
   .slide {
-    padding: 16px 14px 20px; /* smaller padding on mobile */
+    padding: 16px 14px 20px;
   }
   .card-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
   .nav-btn {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     font-size: 18px;
   }
 }

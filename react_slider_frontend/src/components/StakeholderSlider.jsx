@@ -31,8 +31,7 @@ export default function StakeholderSlider({ slides }) {
             title: "FLOOD-AFFECTED CITIZENS",
             lines: [
               "Riverside residents: lost homes, livelihoods, documents",
-              "Need: basic necessities, emergency funds (food, medicine)",
-              "IDs, access to essentials",
+              "Need: basic necessities, emergency funds (food, medicine), IDs, access to essentials",
             ],
             chip: "Access to essentials",
             icon: (
@@ -40,8 +39,7 @@ export default function StakeholderSlider({ slides }) {
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Citizens icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -64,8 +62,7 @@ export default function StakeholderSlider({ slides }) {
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Government agencies icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -88,8 +85,7 @@ export default function StakeholderSlider({ slides }) {
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Merchants icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -112,8 +108,7 @@ export default function StakeholderSlider({ slides }) {
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Financial institutions icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -135,19 +130,17 @@ export default function StakeholderSlider({ slides }) {
             // First line is the large key metric, rest are concise benefits
             lines: [
               "2–4 HOURS",
-              "Rapid activation; faster than legacy cycles",
-              "Real-time verification & onboarding",
-              "Instant merchant payouts for essentials",
+              "Rapid beneficiary engagement",
+              "Real-time verification",
+              "Instant fund disbursement",
             ],
             chip: "⚡ Fast-track aid",
             icon: (
-              // Clock + bolt motif
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Speed icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -161,20 +154,18 @@ export default function StakeholderSlider({ slides }) {
             accent: "green",
             title: "CITIZEN RELIEF EXPERIENCE",
             lines: [
-              "Zero Friction Access",
-              "One-ID eligibility; minimal paperwork",
-              "UPI-ready disbursal; guided steps",
-              "Receipts, SMS updates, helpline",
+              "ZERO FRICTION ACCESS",
+              "Instant Direct Benefit Transfer (DBT).",
+              "Digital Identification Verified.",
+              "Minimal Documentation Required.",
             ],
             chip: "👤 Verified & seamless",
             icon: (
-              // Person with check
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Citizen experience icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -188,20 +179,17 @@ export default function StakeholderSlider({ slides }) {
             accent: "orange",
             title: "FINANCIAL ACCOUNTABILITY",
             lines: [
-              "100% Audit Trail",
-              "Auto-reconciliation to allocations",
-              "Fraud flags on duplicates/anomalies",
-              "Traceable end-to-end flow",
+              "100% AUDIT TRAIL",
+              "ALLOCATION (Govt.) → Verification (System) → Disbursement (Citizen)",
+              "Real-time fiscal checks and secure ledgers.",
             ],
             chip: "🔒 Controlled & transparent",
             icon: (
-              // Shield/lock with chain motif
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Financial accountability icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
@@ -215,20 +203,17 @@ export default function StakeholderSlider({ slides }) {
             accent: "purple",
             title: "SCALABILITY & REUSABILITY",
             lines: [
-              "500,000+ beneficiaries in 48 hours",
-              "Modular playbooks for varied disasters",
-              "API-first; plug-and-play partners",
-              "Reusable components; rapid rollout",
+              "500,000+",
+              "BENEFICIARIES IN 48 HOURS",
+              "FLOOD RELIEF • HEALTH • SUPPLY • FINANCIAL • EMERGENCY AID",
             ],
             chip: "📈 Built to scale",
             icon: (
-              // Growth arrow with connected boxes
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
-                role="img"
-                aria-label="Scalability and reusability icon"
+                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
