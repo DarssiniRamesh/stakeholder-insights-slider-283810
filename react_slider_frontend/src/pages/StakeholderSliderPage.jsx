@@ -32,10 +32,10 @@ export default function StakeholderSliderPage() {
             style={{
               fontFamily: '"Helvetica Neue", Arial, sans-serif',
               fontWeight: 700,
-              fontSize: "clamp(20px, 2.2vw, 24px)",
-              letterSpacing: "0.4px",
+              fontSize: "var(--slider-title-size)",
+              letterSpacing: "0.45px",
               textTransform: "uppercase",
-              color: "var(--text-strong, #2B3A4A)",
+              color: "var(--slider-text-strong, #1e3a8a)",
               margin: 0,
             }}
           >

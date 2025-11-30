@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--bg-canvas, #ffffff);
+  color: var(--slider-text-body, #1f4399);
 }
 
 code {
