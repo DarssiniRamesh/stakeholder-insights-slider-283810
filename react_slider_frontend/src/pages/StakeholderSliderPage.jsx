@@ -49,7 +49,7 @@ export default function StakeholderSliderPage() {
               color: "var(--text-default, #334155)",
             }}
           >
-            Use the arrows or dots to view Expected Relief Impact & Metrics.
+            Use the arrows or dots to view Expected Relief Impact & Metrics and Stakeholder Relationships.
           </p>
         </header>
 

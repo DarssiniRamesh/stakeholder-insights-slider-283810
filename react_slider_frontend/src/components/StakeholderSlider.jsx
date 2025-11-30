@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./StakeholderSlider.css";
+import StakeholderRelationGrid from "./StakeholderRelationGrid";
 
 /**
  * PUBLIC_INTERFACE
@@ -233,6 +234,11 @@ export default function StakeholderSlider({ slides }) {
           },
         ],
       },
+      {
+        id: "slide-3",
+        title: "Stakeholder Relationships",
+        type: "relations"
+      },
     ],
     []
   );
@@ -299,55 +305,58 @@ export default function StakeholderSlider({ slides }) {
               aria-roledescription="slide"
               aria-label={`${slide.title} - Slide ${idx + 1} of ${total}`}
             >
-              {/* Grid supports 4 cols on desktop, 2x2 at medium widths */}
-              <div className="card-grid">
-                {slide.cards.map((card) => (
-                  <div
-                    key={card.id}
-                    className={`card card--${card.accent}`}
-                    role="group"
-                    aria-labelledby={`${card.id}-title`}
-                  >
-                    <div className="card-icon" aria-hidden="true">
-                      {card.icon}
-                    </div>
-                    <h3 id={`${card.id}-title`} className="card-title">
-                      {card.title}
-                    </h3>
-                    <div className="card-body">
-                      {card.lines.map((line, i) => {
-                        // Support semantic bullet list for the tagline on the next line
-                        if (typeof line === "object" && line?.type === "tagline" && Array.isArray(line.items)) {
+              {slide.type === "relations" ? (
+                <StakeholderRelationGrid />
+              ) : (
+                <div className="card-grid">
+                  {slide.cards.map((card) => (
+                    <div
+                      key={card.id}
+                      className={`card card--${card.accent}`}
+                      role="group"
+                      aria-labelledby={`${card.id}-title`}
+                    >
+                      <div className="card-icon" aria-hidden="true">
+                        {card.icon}
+                      </div>
+                      <h3 id={`${card.id}-title`} className="card-title">
+                        {card.title}
+                      </h3>
+                      <div className="card-body">
+                        {card.lines.map((line, i) => {
+                          // Support semantic bullet list for the tagline on the next line
+                          if (typeof line === "object" && line?.type === "tagline" && Array.isArray(line.items)) {
+                            return (
+                              <ul
+                                key={`tagline-${card.id}`}
+                                className="tagline-list"
+                                role="list"
+                                aria-label="Reusability domains"
+                              >
+                                {line.items.map((item, idx) => (
+                                  <li key={`${card.id}-tag-${idx}`} className="tagline-item">
+                                    <span className="bullet" aria-hidden="true">•</span>
+                                    <span className="tagline-text">{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            );
+                          }
                           return (
-                            <ul
-                              key={`tagline-${card.id}`}
-                              className="tagline-list"
-                              role="list"
-                              aria-label="Reusability domains"
+                            <p
+                              key={i}
+                              className={`card-line ${i === 0 ? "metric" : ""}`}
                             >
-                              {line.items.map((item, idx) => (
-                                <li key={`${card.id}-tag-${idx}`} className="tagline-item">
-                                  <span className="bullet" aria-hidden="true">•</span>
-                                  <span className="tagline-text">{item}</span>
-                                </li>
-                              ))}
-                            </ul>
+                              {line}
+                            </p>
                           );
-                        }
-                        return (
-                          <p
-                            key={i}
-                            className={`card-line ${i === 0 ? "metric" : ""}`}
-                          >
-                            {line}
-                          </p>
-                        );
-                      })}
+                        })}
+                      </div>
+                      <div className="card-chip">{card.chip}</div>
                     </div>
-                    <div className="card-chip">{card.chip}</div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>
