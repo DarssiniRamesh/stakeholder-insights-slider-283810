@@ -10,6 +10,13 @@ import "./StakeholderSlider.css";
  * - Live region announcements.
  * - Focusable controls with visible outlines.
  */
+/**
+ * PUBLIC_INTERFACE
+ * Renders the stakeholder slider component.
+ * @param {Object} props
+ * @param {Array=} props.slides - Optional future array of slide data; currently the component renders a single composed slide.
+ * @returns {JSX.Element} The stakeholder slider with cards and navigation controls.
+ */
 export default function StakeholderSlider({ slides }) {
   // Build one "slide" that contains 4 cards per the PPT design
   const slideData = useMemo(

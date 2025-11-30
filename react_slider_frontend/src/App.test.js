@@ -3,6 +3,7 @@ import App from './App';
 
 test('renders slider heading', () => {
   render(<App />);
-  const heading = screen.getByText(/Flood Relief Stakeholders/i);
+  // Match the exact heading text used in StakeholderSliderPage
+  const heading = screen.getByText(/Key Stakeholders in Flood Relief/i);
   expect(heading).toBeInTheDocument();
 });
