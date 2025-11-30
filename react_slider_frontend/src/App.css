@@ -8,6 +8,21 @@
   --border-color: #e9ecef;
   --button-bg: #0d6efd;
   --button-text: #ffffff;
+
+  /* Design tokens from style guide */
+  --bg-canvas: #FFFFFF;
+  --bg-subtle: #F5F7FA;
+  --border-subtle: #E6E9EF;
+  --shadow-rgba: rgba(20,30,50,0.08);
+
+  --text-strong: #2B3A4A;
+  --text-body: #4A5866;
+  --text-muted: #6C7A89;
+
+  --accent-blue: #2E74C5;
+  --accent-green: #58A55C;
+  --accent-orange: #E68A3A;
+  --accent-purple: #6A55C7;
 }
 
 [data-theme="dark"] {
