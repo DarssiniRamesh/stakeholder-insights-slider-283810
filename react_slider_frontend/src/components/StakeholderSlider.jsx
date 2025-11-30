@@ -205,7 +205,16 @@ export default function StakeholderSlider({ slides }) {
             lines: [
               "500,000+",
               "BENEFICIARIES IN 48 HOURS",
-              "FLOOD RELIEF • HEALTH • SUPPLY • FINANCIAL • EMERGENCY AID",
+              {
+                type: "tagline",
+                items: [
+                  "FLOOD RELIEF",
+                  "HEALTH",
+                  "SUPPLY",
+                  "FINANCIAL",
+                  "EMERGENCY AID",
+                ],
+              },
             ],
             chip: "📈 Built to scale",
             icon: (
@@ -306,14 +315,34 @@ export default function StakeholderSlider({ slides }) {
                       {card.title}
                     </h3>
                     <div className="card-body">
-                      {card.lines.map((line, i) => (
-                        <p
-                          key={i}
-                          className={`card-line ${i === 0 ? "metric" : ""}`}
-                        >
-                          {line}
-                        </p>
-                      ))}
+                      {card.lines.map((line, i) => {
+                        // Support semantic bullet list for the tagline on the next line
+                        if (typeof line === "object" && line?.type === "tagline" && Array.isArray(line.items)) {
+                          return (
+                            <ul
+                              key={`tagline-${card.id}`}
+                              className="tagline-list"
+                              role="list"
+                              aria-label="Reusability domains"
+                            >
+                              {line.items.map((item, idx) => (
+                                <li key={`${card.id}-tag-${idx}`} className="tagline-item">
+                                  <span className="bullet" aria-hidden="true">•</span>
+                                  <span className="tagline-text">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          );
+                        }
+                        return (
+                          <p
+                            key={i}
+                            className={`card-line ${i === 0 ? "metric" : ""}`}
+                          >
+                            {line}
+                          </p>
+                        );
+                      })}
                     </div>
                     <div className="card-chip">{card.chip}</div>
                   </div>

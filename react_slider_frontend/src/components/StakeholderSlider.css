@@ -140,6 +140,41 @@
   gap: 8px;
 }
 
+/* Tagline bullets: next-line list with inline bullets and responsive wrapping */
+.tagline-list {
+  /* inherit font sizing from card-body to maintain existing typography scale */
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px; /* vertical, horizontal */
+  color: var(--slider-text-body, #1f4399); /* current blue text palette */
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.tagline-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; /* keep item intact; wrapping handled between items */
+}
+
+.tagline-item .bullet {
+  display: inline-block;
+  line-height: 1;
+  color: var(--slider-text-body, #1f4399);
+  font-weight: 700; /* make the bullet visually consistent */
+}
+
+.tagline-text {
+  color: var(--slider-text-body, #1f4399);
+  font-weight: 600; /* subtle emphasis akin to subheader style */
+  letter-spacing: 0.2px;
+  text-transform: uppercase; /* matches current uppercase style usage */
+}
+
 .card-line {
   margin: 0;
 }
