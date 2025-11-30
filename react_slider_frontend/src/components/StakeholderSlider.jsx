@@ -18,7 +18,7 @@ import "./StakeholderSlider.css";
  * @returns {JSX.Element} The slider with cards and navigation controls.
  */
 export default function StakeholderSlider({ slides }) {
-  // Build two slides: existing Stakeholders and new Impacts & Outcomes (Expected Relief Impact & Metrics)
+  // Build two slides: existing Stakeholders and updated Impacts 2x2 quadrant layout
   const slideData = useMemo(
     () => [
       {
@@ -126,18 +126,22 @@ export default function StakeholderSlider({ slides }) {
       {
         id: "slide-2",
         title: "Expected Relief Impact & Metrics",
+        // Four-quadrant content with large key metrics and icons per spec
         cards: [
           {
-            id: "speed",
+            id: "q1-speed",
             accent: "blue",
             title: "EMERGENCY RESPONSE SPEED",
+            // First line is the large key metric, rest are concise benefits
             lines: [
-              "Cash/aid disbursal TAT: minutes–hours, not days",
-              "Real-time beneficiary onboarding & verification",
-              "Faster merchant payouts for essentials",
+              "2–4 HOURS",
+              "Rapid activation; faster than legacy cycles",
+              "Real-time verification & onboarding",
+              "Instant merchant payouts for essentials",
             ],
-            chip: "Rapid activation",
+            chip: "⚡ Fast-track aid",
             icon: (
+              // Clock + bolt motif
               <svg
                 width="28"
                 height="28"
@@ -147,79 +151,89 @@ export default function StakeholderSlider({ slides }) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
-                <path d="M20 13H4l4-4-1.41-1.41L.17 14l6.41 6.41L8.99 19l-4-4h15v-2z" />
+                <path d="M11.99 2a10 10 0 1010.01 10A10 10 0 0011.99 2zm1 11h-4V7h2v4h2z" />
+                <path d="M13.5 4l-2.5 6h3l-2 6 6-8h-4.5z" />
               </svg>
             ),
           },
           {
-            id: "experience",
+            id: "q2-experience",
             accent: "green",
             title: "CITIZEN RELIEF EXPERIENCE",
             lines: [
-              "Simple claims via ID/phone; minimal paperwork",
-              "Access to food, medicine, shelter quickly",
-              "Status visibility: notifications & receipts",
+              "Zero Friction Access",
+              "One-ID eligibility; minimal paperwork",
+              "UPI-ready disbursal; guided steps",
+              "Receipts, SMS updates, helpline",
             ],
-            chip: "Low-friction access",
+            chip: "👤 Verified & seamless",
             icon: (
+              // Person with check
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
                 role="img"
-                aria-label="Experience icon"
+                aria-label="Citizen experience icon"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.54C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                <path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-3 0-9 1.5-9 4.5V21h12.5" />
+                <path d="M19 13l-2 2-1-1-1.5 1.5L17 18l3.5-3.5L19 13z" />
               </svg>
             ),
           },
           {
-            id: "accountability",
+            id: "q3-accountability",
             accent: "orange",
             title: "FINANCIAL ACCOUNTABILITY",
             lines: [
-              "End-to-end audit trail on every transaction",
-              "Automated reconciliation against allocations",
-              "Fraud checks: duplicate/suspicious activity",
+              "100% Audit Trail",
+              "Auto-reconciliation to allocations",
+              "Fraud flags on duplicates/anomalies",
+              "Traceable end-to-end flow",
             ],
-            chip: "Transparent flows",
+            chip: "🔒 Controlled & transparent",
             icon: (
+              // Shield/lock with chain motif
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
                 role="img"
-                aria-label="Accountability icon"
+                aria-label="Financial accountability icon"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
-                <path d="M3 3h18v2H3V3zm0 6h12v2H3V9zm0 6h18v2H3v-2z" />
+                <path d="M12 2l7 3v6c0 5-3.3 9.4-7 11-3.7-1.6-7-6-7-11V5l7-3z" />
+                <path d="M9 12h6v4H9zM10 10a2 2 0 114 0v2h-4v-2z" />
               </svg>
             ),
           },
           {
-            id: "scale",
+            id: "q4-scale",
             accent: "purple",
             title: "SCALABILITY & REUSABILITY",
             lines: [
-              "Modular workflows: floods, fires, droughts",
-              "API-first; plug into banks, UPI, logistics",
-              "Scale to lakhs of beneficiaries quickly",
+              "500,000+ beneficiaries in 48 hours",
+              "Modular playbooks for varied disasters",
+              "API-first; plug-and-play partners",
+              "Reusable components; rapid rollout",
             ],
-            chip: "Repeatable model",
+            chip: "📈 Built to scale",
             icon: (
+              // Growth arrow with connected boxes
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 24 24"
                 role="img"
-                aria-label="Scalability icon"
+                aria-label="Scalability and reusability icon"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
               >
-                <path d="M4 9h4V5H4v4zm6 10h4v-6h-4v6zM4 21h4v-6H4v6zm12 0h4v-4h-4v4zM10 5v4h4V5h-4zm6 10h4v-6h-4v6z" />
+                <path d="M4 14h4v4H4zM10 10h4v4h-4zM16 6h4v4h-4z" />
+                <path d="M4 14l6-4 6-4 2 2-6 4-6 4v-2z" />
               </svg>
             ),
           },
@@ -291,6 +305,7 @@ export default function StakeholderSlider({ slides }) {
               aria-roledescription="slide"
               aria-label={`${slide.title} - Slide ${idx + 1} of ${total}`}
             >
+              {/* Grid supports 4 cols on desktop, 2x2 at medium widths */}
               <div className="card-grid">
                 {slide.cards.map((card) => (
                   <div
@@ -307,7 +322,10 @@ export default function StakeholderSlider({ slides }) {
                     </h3>
                     <div className="card-body">
                       {card.lines.map((line, i) => (
-                        <p key={i} className="card-line">
+                        <p
+                          key={i}
+                          className={`card-line ${i === 0 ? "metric" : ""}`}
+                        >
                           {line}
                         </p>
                       ))}
