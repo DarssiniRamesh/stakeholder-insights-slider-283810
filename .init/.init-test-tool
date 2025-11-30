@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/stakeholder-insights-slider-283810/react_slider_frontend"
+}
