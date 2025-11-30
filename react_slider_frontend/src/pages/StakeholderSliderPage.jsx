@@ -19,7 +19,7 @@ export default function StakeholderSliderPage() {
         justifyContent: "center",
         padding: "24px 0 40px",
       }}
-      aria-label="Key stakeholders in flood relief - presentation"
+      aria-label="Flood relief slides - presentation"
     >
       <div
         style={{
@@ -41,9 +41,17 @@ export default function StakeholderSliderPage() {
           >
             Key Stakeholders in Flood Relief
           </h1>
+          <p
+            className="description"
+            style={{
+              marginTop: 6,
+            }}
+          >
+            Use the arrows or dots to view Expected Relief Impact & Metrics.
+          </p>
         </header>
 
-        {/* Single, centered slider area */}
+        {/* Centered slider area with two slides (stakeholders + impacts) */}
         <StakeholderSlider />
       </div>
     </main>

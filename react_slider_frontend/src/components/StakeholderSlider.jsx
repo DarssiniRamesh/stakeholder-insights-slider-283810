@@ -4,9 +4,9 @@ import "./StakeholderSlider.css";
 /**
  * PUBLIC_INTERFACE
  * StakeholderSlider
- * Single-slide PPT-like layout with four stakeholder cards in a grid.
+ * Single or multi-slide PPT-like layout with a grid of section cards.
  * Accessibility:
- * - Keyboard navigation (Left/Right) for future multi-slide support.
+ * - Keyboard navigation (Left/Right).
  * - Live region announcements.
  * - Focusable controls with visible outlines.
  */
@@ -14,15 +14,16 @@ import "./StakeholderSlider.css";
  * PUBLIC_INTERFACE
  * Renders the stakeholder slider component.
  * @param {Object} props
- * @param {Array=} props.slides - Optional future array of slide data; currently the component renders a single composed slide.
- * @returns {JSX.Element} The stakeholder slider with cards and navigation controls.
+ * @param {Array=} props.slides - Optional array of slide data.
+ * @returns {JSX.Element} The slider with cards and navigation controls.
  */
 export default function StakeholderSlider({ slides }) {
-  // Build one "slide" that contains 4 cards per the PPT design
+  // Build two slides: existing Stakeholders and new Impacts & Outcomes (Expected Relief Impact & Metrics)
   const slideData = useMemo(
     () => [
       {
         id: "slide-1",
+        title: "Key Stakeholders in Flood Relief",
         cards: [
           {
             id: "citizens",
@@ -122,11 +123,112 @@ export default function StakeholderSlider({ slides }) {
           },
         ],
       },
+      {
+        id: "slide-2",
+        title: "Expected Relief Impact & Metrics",
+        cards: [
+          {
+            id: "speed",
+            accent: "blue",
+            title: "EMERGENCY RESPONSE SPEED",
+            lines: [
+              "Cash/aid disbursal TAT: minutes–hours, not days",
+              "Real-time beneficiary onboarding & verification",
+              "Faster merchant payouts for essentials",
+            ],
+            chip: "Rapid activation",
+            icon: (
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                role="img"
+                aria-label="Speed icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+              >
+                <path d="M20 13H4l4-4-1.41-1.41L.17 14l6.41 6.41L8.99 19l-4-4h15v-2z" />
+              </svg>
+            ),
+          },
+          {
+            id: "experience",
+            accent: "green",
+            title: "CITIZEN RELIEF EXPERIENCE",
+            lines: [
+              "Simple claims via ID/phone; minimal paperwork",
+              "Access to food, medicine, shelter quickly",
+              "Status visibility: notifications & receipts",
+            ],
+            chip: "Low-friction access",
+            icon: (
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                role="img"
+                aria-label="Experience icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+              >
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.54C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+            ),
+          },
+          {
+            id: "accountability",
+            accent: "orange",
+            title: "FINANCIAL ACCOUNTABILITY",
+            lines: [
+              "End-to-end audit trail on every transaction",
+              "Automated reconciliation against allocations",
+              "Fraud checks: duplicate/suspicious activity",
+            ],
+            chip: "Transparent flows",
+            icon: (
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                role="img"
+                aria-label="Accountability icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+              >
+                <path d="M3 3h18v2H3V3zm0 6h12v2H3V9zm0 6h18v2H3v-2z" />
+              </svg>
+            ),
+          },
+          {
+            id: "scale",
+            accent: "purple",
+            title: "SCALABILITY & REUSABILITY",
+            lines: [
+              "Modular workflows: floods, fires, droughts",
+              "API-first; plug into banks, UPI, logistics",
+              "Scale to lakhs of beneficiaries quickly",
+            ],
+            chip: "Repeatable model",
+            icon: (
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                role="img"
+                aria-label="Scalability icon"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+              >
+                <path d="M4 9h4V5H4v4zm6 10h4v-6h-4v6zM4 21h4v-6H4v6zm12 0h4v-4h-4v4zM10 5v4h4V5h-4zm6 10h4v-6h-4v6z" />
+              </svg>
+            ),
+          },
+        ],
+      },
     ],
     []
   );
 
-  // For single-slide MVP, current index toggles just one slide
   const [current, setCurrent] = useState(0);
   const total = slideData.length;
 
@@ -163,7 +265,7 @@ export default function StakeholderSlider({ slides }) {
     <section
       className="slider-root"
       aria-roledescription="carousel"
-      aria-label="Flood relief stakeholders"
+      aria-label="Flood relief slides"
       onKeyDown={onKeyDown}
       tabIndex={0}
       ref={containerRef}
@@ -187,7 +289,7 @@ export default function StakeholderSlider({ slides }) {
               className="slide"
               role="group"
               aria-roledescription="slide"
-              aria-label={`Slide ${idx + 1} of ${total}`}
+              aria-label={`${slide.title} - Slide ${idx + 1} of ${total}`}
             >
               <div className="card-grid">
                 {slide.cards.map((card) => (
@@ -219,7 +321,7 @@ export default function StakeholderSlider({ slides }) {
         </ul>
       </div>
 
-      {/* Controls prepared for future multi-slide extension */}
+      {/* Controls for multi-slide navigation */}
       <div className="slider-controls" aria-hidden={total <= 1}>
         <button
           type="button"
@@ -253,7 +355,7 @@ export default function StakeholderSlider({ slides }) {
             onClick={() => goTo(idx)}
             role="tab"
             aria-selected={idx === current}
-            aria-label={`Go to slide ${idx + 1}`}
+            aria-label={`Go to slide ${idx + 1}: ${s.title}`}
           />
         ))}
       </div>
