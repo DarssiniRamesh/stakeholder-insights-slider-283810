@@ -1,0 +1,183 @@
+.pageWrap {
+  background: var(--bg-canvas, #ffffff);
+  min-height: 100vh;
+  padding: 28px 0 56px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--text-strong, #0F172A);
+  font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+  width: min(1180px, 94vw);
+  padding: 0 24px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-strong, #0F172A);
+}
+
+.subtleLink {
+  color: var(--slider-link, #1f4399);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid var(--border-subtle, #E6E9EF);
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.subtleLink:hover {
+  background: #f8fafc;
+}
+
+.layerCaption {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-muted, #64748B);
+  margin: 0 0 10px 2px;
+}
+
+.layers {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  position: relative;
+}
+
+/* Connector rows: a single subtle line between rows */
+.connectorRow {
+  position: relative;
+  height: 12px;
+}
+
+.connectorRow::before {
+  content: "";
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: rgba(15, 23, 42, 0.08);
+  border-radius: 2px;
+}
+
+/* Grid of 3 equal cards, stacks on small screens */
+.rowGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .rowGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .rowGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card base */
+.card {
+  position: relative;
+  min-height: 110px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border-subtle, #E6E9EF);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Tints per layer */
+.tintBlue {
+  background: linear-gradient(0deg, rgba(59,130,246,0.06), rgba(59,130,246,0.06)), #ffffff;
+}
+
+.tintNavy {
+  background: linear-gradient(0deg, rgba(5,14,155,0.15), rgba(5,14,155,0.15)), #ffffff;
+}
+
+.tintGreen {
+  background: linear-gradient(0deg, rgba(16,185,129,0.15), rgba(16,185,129,0.15)), #ffffff;
+}
+
+.cardTitle {
+  margin: 0;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-strong, #0F172A);
+}
+
+.iconRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  color: #0f172a; /* default icon color; many SVGs use currentColor */
+}
+
+/* Small helper for placeholder initial badges */
+.badge {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(15,23,42,0.06);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* Thin vertical connectors from top row to middle row (subtle) and middle to bottom.
+   We implement them using pseudo-elements anchored to the row grid area for a clean look. */
+.rowGrid.hasPins {
+  position: relative;
+}
+
+.rowGrid.hasPins::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: clamp(20px, 4vw, 28px);
+  background: rgba(15, 23, 42, 0.08);
+  border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  .rowGrid.hasPins::after {
+    display: none;
+  }
+}

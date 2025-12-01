@@ -22,6 +22,22 @@ body {
   color: var(--slider-text-body, #1f4399);
 }
 
+a {
+  color: var(--slider-link, #1f4399);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--slider-link, #1f4399) 60%, transparent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /* Make sure common heading elements honor Monda explicitly */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Monda', 'Helvetica Neue', Arial, sans-serif;
