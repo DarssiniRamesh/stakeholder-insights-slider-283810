@@ -1,7 +1,7 @@
 .pageWrap {
   background: var(--bg-canvas, #ffffff);
   min-height: 100vh;
-  padding: 28px 0 56px;
+  padding: 28px 0 64px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -15,10 +15,10 @@
 }
 
 .header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 16px;
 }
 
@@ -29,6 +29,19 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: var(--text-strong, #0F172A);
+}
+
+.blockchainBadge {
+  justify-self: end;
+  background: #ffffff;
+  color: #7C3AED;
+  border: 1px solid color-mix(in srgb, #7C3AED 40%, #E6E9EF);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.08);
 }
 
 .subtleLink {
@@ -48,7 +61,7 @@
 
 .layerCaption {
   font-size: 12.5px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.6px;
   text-transform: uppercase;
   color: var(--text-muted, #64748B);
@@ -64,17 +77,17 @@
 /* Connector rows: a single subtle line between rows */
 .connectorRow {
   position: relative;
-  height: 12px;
+  height: 14px;
 }
 
 .connectorRow::before {
   content: "";
   position: absolute;
-  left: 2%;
-  right: 2%;
+  left: 4%;
+  right: 4%;
   top: 50%;
   transform: translateY(-50%);
-  height: 2px;
+  height: 1.5px;
   background: rgba(15, 23, 42, 0.08);
   border-radius: 2px;
 }
@@ -101,7 +114,7 @@
 /* Card base */
 .card {
   position: relative;
-  min-height: 110px;
+  min-height: 120px;
   padding: 16px 20px;
   border-radius: 16px;
   background: #ffffff;
@@ -112,24 +125,40 @@
   gap: 10px;
 }
 
-/* Tints per layer */
+/* Tints per layer (updated) */
 .tintBlue {
-  background: linear-gradient(0deg, rgba(59,130,246,0.06), rgba(59,130,246,0.06)), #ffffff;
+  /* soft light-blue tint on white cards */
+  background:
+    linear-gradient(0deg, rgba(59,130,246,0.06), rgba(59,130,246,0.06)),
+    #ffffff;
 }
 
 .tintNavy {
-  background: linear-gradient(0deg, rgba(5,14,155,0.15), rgba(5,14,155,0.15)), #ffffff;
+  /* #050E9B at ~15% opacity over white */
+  background:
+    linear-gradient(0deg, rgba(5,14,155,0.15), rgba(5,14,155,0.15)),
+    #ffffff;
 }
 
-.tintGreen {
-  background: linear-gradient(0deg, rgba(16,185,129,0.15), rgba(16,185,129,0.15)), #ffffff;
+.tintPurple {
+  /* soft purple with subtle TL->BR gradient */
+  background:
+    linear-gradient(135deg, rgba(124,58,237,0.15), rgba(124,58,237,0.08)),
+    #ffffff;
 }
 
 .cardTitle {
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
   color: var(--text-strong, #0F172A);
+}
+
+.cardBodyLine {
+  margin: 0;
+  color: var(--text-default, #334155);
+  font-weight: 600;
+  font-size: 13.5px;
 }
 
 .iconRow {
@@ -142,24 +171,26 @@
 .icon {
   width: 28px;
   height: 28px;
-  color: #0f172a; /* default icon color; many SVGs use currentColor */
+  color: #0f172a; /* default base; shape fills use currentColor or opacity */
 }
 
-/* Small helper for placeholder initial badges */
-.badge {
+/* Icon badge wrapper with a simple letter */
+.iconBadge {
+  position: relative;
   display: inline-grid;
   place-items: center;
   width: 28px;
   height: 28px;
-  border-radius: 6px;
-  background: rgba(15,23,42,0.06);
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 12px;
 }
 
-/* Thin vertical connectors from top row to middle row (subtle) and middle to bottom.
-   We implement them using pseudo-elements anchored to the row grid area for a clean look. */
+.iconLetter {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Thin vertical connectors from top row to middle row (subtle) */
 .rowGrid.hasPins {
   position: relative;
 }
@@ -170,8 +201,8 @@
   left: 50%;
   top: 100%;
   transform: translateX(-50%);
-  width: 2px;
-  height: clamp(20px, 4vw, 28px);
+  width: 1.5px;
+  height: clamp(18px, 4vw, 26px);
   background: rgba(15, 23, 42, 0.08);
   border-radius: 2px;
 }
@@ -180,4 +211,40 @@
   .rowGrid.hasPins::after {
     display: none;
   }
+}
+
+/* Bottom legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(15, 23, 42, 0.12);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendKey {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #f4f1ff;
+  color: #7C3AED;
+  font-weight: 800;
+  font-size: 12px;
+  border: 1px solid color-mix(in srgb, #7C3AED 35%, #E6E9EF);
+}
+
+.legendText {
+  font-size: 13px;
+  color: var(--text-default, #334155);
+  font-weight: 600;
 }
